@@ -10,7 +10,7 @@ pipeline {
        steps 
        {
          script {
-           sh 'docker build -t test:latest .'
+           sh 'whoami'
          }
        }
      }
