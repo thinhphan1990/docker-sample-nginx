@@ -1,8 +1,6 @@
 pipeline {
   agent any
-
   stages {
-        
     stage('Cloning Git') {
       steps {
         git 'https://github.com/thinhphan1990/docker-sample-nginx.git'
@@ -11,10 +9,10 @@ pipeline {
 
     stage('buid') {
       steps {
-        echo "Running build automa"
-        sh "docker build -t test ."
+        echo 'Running build automa'
+        sh 'docker build -t test .'
       }
     }
-    
+
   }
 }
