@@ -11,6 +11,7 @@ pipeline {
        {
          script {
            sh 'whoami'
+           sh 'docker build -t thinh .'
          }
        }
      }
