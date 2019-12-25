@@ -10,8 +10,7 @@ pipeline {
        steps 
        {
          script {
-           sh 'whoami'
-           sh -c 'docker build -t thinh .'
+          app = docker.build("test")
          }
        }
      }
