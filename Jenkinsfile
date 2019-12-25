@@ -9,7 +9,9 @@ pipeline {
      stage('Build image') {
        steps 
        {
-        sh 'docker build -t test:latest .'
+         script {
+           sh 'docker build -t test:latest .'
+         }
        }
      }
   }
