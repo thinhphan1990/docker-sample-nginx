@@ -9,7 +9,7 @@ pipeline {
      stage('Build image') {
        steps 
        {
-        sh "docker build -t test ."
+        sh 'docker build -t test:latest .'
        }
      }
   }
