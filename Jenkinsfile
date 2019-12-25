@@ -7,9 +7,9 @@ pipeline {
       }
     }
      stage('Build image') {
-         steps {
-            sh"docker build -t test ."
-         }
+          script {
+                    app = docker.build("test")
+          }
      }
   }
 }
