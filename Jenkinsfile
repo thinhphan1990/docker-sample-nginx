@@ -11,7 +11,7 @@ pipeline {
 
     stage('buid') {
       steps {
-        echo 'Running build automa
+        echo "Running build automa"
         sh "docker build -t test ."
       }
     }
