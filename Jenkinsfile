@@ -6,5 +6,8 @@ pipeline {
         git 'https://github.com/thinhphan1990/docker-sample-nginx.git'
       }
     }
+     stage('Build image') {
+      sh"docker build -t test ."
+     }
   }
 }
