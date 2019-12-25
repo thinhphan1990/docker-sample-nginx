@@ -9,7 +9,7 @@ pipeline {
      stage('Build image') {
        steps 
        {
-        app = docker.build("getintodevops/hellonode")
+        sh "docker build -t test ."
        }
      }
   }
