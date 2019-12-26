@@ -14,7 +14,6 @@ pipeline {
        {
          script {
           app = docker.build("test")
-          sh "docker build -t 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest  ."
 
          }
        }
@@ -23,9 +22,10 @@ pipeline {
        steps 
        {
          script {
-              docker.withRegistry('076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:bttrm-backend-ecr') {
-              sh "docker push 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest"
-        }
+                    docker.withRegistry('076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:AWS') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    }
          }
        }
      }
