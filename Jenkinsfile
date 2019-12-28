@@ -22,7 +22,9 @@ pipeline {
        steps 
        {
          script {
-                    docker.withRegistry('https://076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:default') {
+                   sh 'rm  ~/.dockercfg || true'
+                  sh 'rm ~/.docker/config.json || true'
+                    docker.withRegistry('https://076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:AKIARDPXTEIMY7VTDVQU') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
