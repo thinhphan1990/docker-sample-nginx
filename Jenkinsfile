@@ -25,7 +25,7 @@ pipeline {
                    sh 'rm  ~/.dockercfg || true'
                   sh 'rm ~/.docker/config.json || true'                    
            
-                    docker.withRegistry('https://076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:default') {
+                    docker.withRegistry('https://076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:bttrm-backend-ecr') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
