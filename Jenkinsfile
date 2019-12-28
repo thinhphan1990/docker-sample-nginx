@@ -22,7 +22,7 @@ pipeline {
        steps 
        {
          script {
-                    docker.withRegistry('076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:AWS') {
+                    docker.withRegistry('076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:default') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
