@@ -13,7 +13,9 @@ pipeline {
        steps 
        {
          script {
-          app = docker.build("test")
+        sh '$(aws ecr get-login --no-include-email --region ap-southeast-1)'
+           sh 'docker build -t test .'
+
 
          }
        }
@@ -25,10 +27,9 @@ pipeline {
                    sh 'rm  ~/.dockercfg || true'
                   sh 'rm ~/.docker/config.json || true'                    
            
-                    docker.withRegistry('https://076218049049.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:bttrm-backend-ecr') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
-                    }
+           sh 'docker tag test:latest 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest'
+            sh 'docker push 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest'
+
          }
        }
      }
