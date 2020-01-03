@@ -41,8 +41,7 @@ pipeline {
        {
           withCredentials([sshUserPrivateKey(credentialsId: "SshToSever-test", keyFileVariable: 'keyfile')]) {
      
-              sh "ssh -i ${keyfile} root@192.168.0.16"
-              sh "whoami"
+              sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no root@192.168.0.16"
             
         }
                   
