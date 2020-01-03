@@ -39,7 +39,7 @@ pipeline {
     stage('ssh-test') {
        steps 
        {
-          withCredentials([sshUserPrivateKey(credentialsId: "mac-dxs", keyFileVariable: 'keyfile')]) {
+          withCredentials([sshUserPrivateKey(credentialsId: "SshToSever-test", keyFileVariable: 'keyfile')]) {
               
               sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no dxs@192.168.0.16 \"docker pull redis\""
              
