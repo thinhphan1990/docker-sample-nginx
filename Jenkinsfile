@@ -4,7 +4,7 @@ pipeline {
     PATH = "/usr/local/bin:$PATH"
   }
 
-  
+
   stages {
     stage('Cloning Git') {
       steps {
@@ -36,13 +36,12 @@ pipeline {
        }
      }
     stage('ssh-test') {
-        def remote = [:]
-        remote.name = "node-1"
-        remote.host = "192.168.0.16"
-        remote.allowAnyHosts = true
-
        steps 
        {
+          def remote = [:]
+          remote.name = "node-1"
+          remote.host = "192.168.0.16"
+          remote.allowAnyHosts = true
           withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
                   remote.user = userName
                   remote.identityFile = identity
