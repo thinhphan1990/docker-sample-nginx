@@ -40,7 +40,7 @@ pipeline {
        steps 
        {
           withCredentials([sshUserPrivateKey(credentialsId: "SshToSever-test", keyFileVariable: 'keyfile')]) {
-            stage('scp-fb') {
+            stage('scpfb') {
               sh "ssh -i ${keyfile} root@192.168.0.16"
               sh "whoami"
             }
