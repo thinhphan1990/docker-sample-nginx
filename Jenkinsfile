@@ -28,12 +28,10 @@ pipeline {
        steps 
        {
          script {
-                   sh 'rm  ~/.dockercfg || true'
-                  sh 'rm ~/.docker/config.json || true'                    
-           
+           sh 'rm  ~/.dockercfg || true'
+           sh 'rm ~/.docker/config.json || true'                 
            sh 'docker tag test:latest 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest'
-            sh 'docker push 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest'
-
+           sh 'docker push 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest'
          }
        }
      }
@@ -43,13 +41,9 @@ pipeline {
           withCredentials([sshUserPrivateKey(credentialsId: "SshToSever-test", keyFileVariable: 'keyfile')]) {
             
               sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no root@192.168.0.16 \"TAG=${TAG}\""
-              sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no root@192.168.0.16 \"$(aws ecr get-login --no-include-email --region ap-southeast-1)\""
-
               sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no root@192.168.0.16 \"/usr/local/bin/docker-compose -f  /tmp/dxs-o2o-backend/docker-compose.yml -f  /tmp/dxs-o2o-backend/docker-compose.dev.yml up -d\""
              
         }
-                  
-
        }
      }
   }
