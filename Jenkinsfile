@@ -3,7 +3,7 @@ pipeline {
   agent any
   environment {
     PATH = "/usr/local/bin:$PATH"
-    TAG = latest
+    TAG = "latest"
   }
 
 
