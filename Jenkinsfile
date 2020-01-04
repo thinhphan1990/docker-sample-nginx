@@ -17,7 +17,6 @@ pipeline {
        steps 
        {
          script {
-        sh '$(aws ecr get-login --no-include-email --region ap-southeast-1)'
            sh 'docker build -t test .'
 
 
@@ -29,7 +28,9 @@ pipeline {
        {
          script {
            sh 'rm  ~/.dockercfg || true'
-           sh 'rm ~/.docker/config.json || true'                 
+           sh 'rm ~/.docker/config.json || true'      
+                   sh '$(aws ecr get-login --no-include-email --region ap-southeast-1)'
+
            sh 'docker tag test:latest 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest'
            sh 'docker push 076218049049.dkr.ecr.ap-southeast-1.amazonaws.com/test:latest'
          }
