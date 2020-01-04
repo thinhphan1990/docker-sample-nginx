@@ -40,9 +40,8 @@ pipeline {
        steps 
        {
           withCredentials([sshUserPrivateKey(credentialsId: "SshToSever-test", keyFileVariable: 'keyfile')]) {
-              sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no root@192.168.0.16 \"/tmp/dxs-o2o-backend/ecr-login.sh\""
-              sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no root@192.168.0.16 \"TAG=${TAG}\""
-              sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no root@192.168.0.16 \"TAG=${TAG}\" \"/usr/local/bin/docker-compose -f  /tmp/dxs-o2o-backend/docker-compose.yml -f  /tmp/dxs-o2o-backend/docker-compose.dev.yml up -d\""
+
+              sh "ssh -i ${keyfile} -o StrictHostKeyChecking=no root@192.168.0.16 \"/tmp/dxs-o2o-backend/ecr-login.sh\" \"TAG=${TAG}\" \"/usr/local/bin/docker-compose -f  /tmp/dxs-o2o-backend/docker-compose.yml -f  /tmp/dxs-o2o-backend/docker-compose.dev.yml up -d\""
              
         }
        }
